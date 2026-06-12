@@ -5,8 +5,12 @@
  *  - subtraction (-)
  *  - multiplication (*)
  *  - division (/)
+ *  - modulo (%)
+ *  - exponentiation (power)
+ *  - square root
  *
- * Exposes: add(a, b), subtract(a, b), multiply(a, b), divide(a, b)
+ * Exposes: add(a, b), subtract(a, b), multiply(a, b), divide(a, b),
+ *           modulo(a, b), power(base, exponent), squareRoot(n)
  */
 
 function toNumber(value) {
@@ -33,9 +37,28 @@ function divide(a, b) {
   return toNumber(a) / nb;
 }
 
+function modulo(a, b) {
+  const nb = toNumber(b);
+  if (nb === 0) throw new RangeError('Modulo by zero');
+  return toNumber(a) % nb;
+}
+
+function power(base, exponent) {
+  return Math.pow(toNumber(base), toNumber(exponent));
+}
+
+function squareRoot(n) {
+  const nn = toNumber(n);
+  if (nn < 0) throw new RangeError('Square root of negative number');
+  return Math.sqrt(nn);
+}
+
 module.exports = {
   add,
   subtract,
   multiply,
   divide,
+  modulo,
+  power,
+  squareRoot,
 };
